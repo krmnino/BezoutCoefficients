@@ -1,4 +1,4 @@
-def euclid_gcd(number, divisor):
+def euclid_gcd(number, divisor): #function that takes 2 numbers and calculates their gcd using Euclid's algorithm
     quotient = 0 #set quotient and remainder to 0
     remainder = 0
     while(divisor != 0): #while divisor is not 0...
@@ -18,7 +18,7 @@ def bezout(a, b): #function that takes 2 numbers and use tabular method to compu
     | remainder | quotient | s | t |
     |     a     |     0    | 1 | 0 |
     |     b     |    a/b   | 0 | 1 |
-    this table grow dynamically
+    this table grows dynamically
     '''
     i = 2 #set iterator to 2 ('poining' to a new row in table)
     while(True): #while true
@@ -26,7 +26,8 @@ def bezout(a, b): #function that takes 2 numbers and use tabular method to compu
         #the i-th remainder is equal to remainder at row i-2 mod quotient at row i-1
         if(row[0] == 0): #if the quotient at the i-th row equal 0, then exit while loop
             break;
-        row[1] = int(table[i - 1][0] / row[0]) #set the i-th quotient equal to remainder at i-1 over i-th remainder
+        row[1] = int(table[i - 1][0] / row[0]) 
+        #set the i-th quotient equal to remainder at i-1 over i-th remainder
         row[2] = table[i - 2][2] - (table[i - 1][1] * table[i - 1][2]) 
         #set i-th s Bezout coefficient equal to quotient at i-1 times s Bezout coefficient at i - 1, then subtract s Bezout cofficient at row i - 2 from the product 
         row[3] = table[i - 2][3] - (table[i - 1][1] * table[i - 1][3])
