@@ -34,7 +34,7 @@ def bezout(a, b): #function that takes 2 numbers and use tabular method to compu
         #set i-th t Bezout coefficient equal to quotient at i-1 times t Bezout coefficient at i - 1, then subtract t Bezout cofficient at row i - 2 from the product
         table.append(row) #add computed row to table
         i += 1 #increment iterator by 1
-    return (table[i-1][2], table[i-1][3]) #return tupple with final s and t Bezout coefficients
+    return (table[i-1][2], table[i-1][3]) #return tuple with final s and t Bezout coefficients
 
 def launch(num1, num2): #function that takes two unordered numbers and calls 
     if(num1 < num2): #if second number is greater than the first one, swap them
