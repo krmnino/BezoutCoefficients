@@ -1,3 +1,4 @@
+
 def euclid_gcd(number, divisor): #function that takes 2 numbers and calculates their gcd using Euclid's algorithm
     quotient = 0 #set quotient and remainder to 0
     remainder = 0
@@ -12,6 +13,12 @@ def euclid_gcd(number, divisor): #function that takes 2 numbers and calculates t
     return number #when the outer while-loop ends, return current state of variable number
 
 def bezout(a, b): #function that takes 2 numbers and use tabular method to compute Bezout coefficients
+    if (a == 0 and b == 0): #if both numbers are 0, then return (s, t) as (0, 0)
+        return (0, 0)
+    if(a == 0): #if a is 0, then return (s, t) as (0, 1)
+        return (0, 1)
+    if(b == 0): #if b is 0, then return (s, t) as (1, 0)
+        return (1, 0)
     table = [[a, 0, 1, 0], [b, int(a / b), 0, 1]] 
     '''
     initialize table
@@ -29,14 +36,16 @@ def bezout(a, b): #function that takes 2 numbers and use tabular method to compu
         row[1] = int(table[i - 1][0] / row[0]) 
         #set the i-th quotient equal to remainder at i-1 over i-th remainder
         row[2] = table[i - 2][2] - (table[i - 1][1] * table[i - 1][2]) 
-        #set i-th s Bezout coefficient equal to quotient at i-1 times s Bezout coefficient at i - 1, then subtract s Bezout cofficient at row i - 2 from the product 
+        #set the i-th s Bezout coefficient equal to the s Bezout cofficient at row i - 2, minus the product of quotient at i-1 times s Bezout coefficient at i - 1
         row[3] = table[i - 2][3] - (table[i - 1][1] * table[i - 1][3])
-        #set i-th t Bezout coefficient equal to quotient at i-1 times t Bezout coefficient at i - 1, then subtract t Bezout cofficient at row i - 2 from the product
+        #set the i-th t Bezout coefficient equal to the s Bezout cofficient at row i - 2, minus the product of quotient at i-1 times t Bezout coefficient at i - 1
         table.append(row) #add computed row to table
         i += 1 #increment iterator by 1
     return (table[i-1][2], table[i-1][3]) #return tuple with final s and t Bezout coefficients
 
 def launch(num1, num2): #function that takes two unordered numbers and calls 
+    num1 = abs(num1) #if any of the numbers is negative, get their absolute value and replace
+    num2 = abs(num2)
     if(num1 < num2): #if second number is greater than the first one, swap them
         temp = num1
         num1 = num2
